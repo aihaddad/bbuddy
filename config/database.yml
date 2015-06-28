@@ -81,8 +81,9 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-# production:
-#   <<: *default
-#   database: bitebuddy_production
-#   username: bitebuddy
-#   password: <%= ENV['BITEBUDDY_DATABASE_PASSWORD'] %>
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['BITEBUDDY_DATABASE'] %>
+  username: <%= ENV['BITEBUDDY_DATABASE_USERNAME'] %>
+  password: <%= ENV['BITEBUDDY_DATABASE_PASSWORD'] %>

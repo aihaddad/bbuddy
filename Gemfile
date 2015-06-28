@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.2'
 # Use rails 4.2.2 as a backend api provider
 gem 'rails', '4.2.2'
 gem 'rails-api'
@@ -58,3 +58,5 @@ group :doc do
 end
 # Use unicorn as the app server
 gem 'puma'
+# Deploy to Heroku
+gem 'rails_12factor', group: :production

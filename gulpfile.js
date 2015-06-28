@@ -58,8 +58,9 @@ gulp.task('clean-styles', function(done) {
 gulp.task('styles', ['clean-styles'], function() {
   log('Compiling SASS to CSS');
 
-  return $.sass(config.dev.css.app, {noCache: true, sourcemap: true})
-    .pipe($.plumber())
+  return gulp
+    .src(config.dev.css.app)
+    .pipe($.sass().on('error', $.sass.logError))
     .pipe($.prefix({browsers: ['last 3 versions', '> 1%', 'Firefox 14']}))
     .pipe(gulp.dest(config.dev.css.dest))
     .pipe($.filter(config.filters.css))
@@ -87,7 +88,7 @@ gulp.task('clean-html', function(done) {
   clean(config.dist.html.index, done);
 });
 
-gulp.task('inject', ['vendor', 'lint', 'styles'], function() {
+gulp.task('inject', ['vendor', 'styles'], function() {
   log('Injecting vendor and source file references into index');
 
   return gulp
@@ -185,11 +186,13 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
     .pipe(gulp.dest(config.dist.client));
 });
 
+gulp.task('heroku:production',  ['build']);
+
 // Production server
 
 gulp.task('serve-dist', ['build'], function() {
   if (args.stack) {
-    exec('rails server');
+    exec('bundle exec rails server');
   }
 
   browserSync.use(browserSyncSpa({
@@ -202,7 +205,7 @@ gulp.task('serve-dist', ['build'], function() {
     server: {
       baseDir: config.dist.client
     },
-    middleware: proxyMiddleware()
+    middleware: proxyMiddleware('http://bbuddy.herokuapp.com/api/')
   });
 
   gulp.watch(config.dist.css.app).on('change', reload);
@@ -231,11 +234,12 @@ function clean(link, done) {
   del(link, done);
 }
 
-function proxyMiddleware() {
+function proxyMiddleware(productionProxy) {
   // Setup proxy for /api calls
-  var proxy   = require('proxy-middleware'),
-      url     = require('url'),
-      api     = url.parse(config.apiProxy);
+  var proxy    = require('proxy-middleware'),
+      url      = require('url'),
+      apiProxy = productionProxy || config.apiProxy;
+  var api      = url.parse(apiProxy);
   // auth    = url.parse(config.authProxy);
 
   api.route   = '/api';
