@@ -8,6 +8,7 @@ var browserSync    = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
 var bowerFiles     = require('main-bower-files');
 var del            = require('del');
+var exec           = require('child_process').exec;
 var reload         = browserSync.reload;
 
 ////////////////////
@@ -116,6 +117,10 @@ gulp.task('template-cache', ['clean-scripts'], function() {
 // Development server
 
 gulp.task('serve-dev', ['clean-scripts', 'inject'], function() {
+  if (args.stack) {
+    exec('rails server');
+  }
+
   browserSync.use(browserSyncSpa({
     selector: '[ng-app]'// Only needed for angular apps
   }));
@@ -134,7 +139,7 @@ gulp.task('serve-dev', ['clean-scripts', 'inject'], function() {
   gulp.watch(config.dev.js.app).on('change', reload);
 });
 
-gulp.task('s', ['serve-dev']); /* alias */
+gulp.task('s',  ['serve-dev']); /* alias */
 
 // Build pipeline
 
@@ -183,6 +188,10 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
 // Production server
 
 gulp.task('serve-dist', ['build'], function() {
+  if (args.stack) {
+    exec('rails server');
+  }
+
   browserSync.use(browserSyncSpa({
     selector: '[ng-app]'// Only needed for angular apps
   }));
@@ -201,7 +210,7 @@ gulp.task('serve-dist', ['build'], function() {
   gulp.watch(config.dist.js.all).on('change',  reload);
 });
 
-gulp.task('sb', ['serve-dist']); /* alias */
+gulp.task('sb',  ['serve-dist']); /* alias */
 
 ////////////////////
 
