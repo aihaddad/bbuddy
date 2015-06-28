@@ -1,0 +1,45 @@
+{
+  "name": "bitebuddy",
+  "version": "0.0.1",
+  "authors": [
+    "Ahmed Elhaddad <aihaddad@outlook.com>"
+  ],
+  "description": "AngularJS-Rails application for BiteBuddy",
+  "main": "gulpfile.js",
+  "keywords": [
+    "bitebuddy",
+    "angular"
+  ],
+  "license": "ISC",
+  "homepage": "example.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/",
+    "client/lib",
+    "test",
+    "tests",
+    "spec"
+  ],
+  "dependencies": {
+    "angular": "~1.4.2",
+    "angular-animate": "~1.4.2",
+    "angular-aria": "~1.4.2",
+    "angular-cookies": "~1.4.2",
+    "angular-material": "~0.10.0",
+    "angular-messages": "~1.4.2",
+    "angular-resource": "~1.4.2",
+    "angular-ui-router": "~0.2.13",
+    "ng-token-auth": "~0.0.24"
+  },
+  "overrides": {
+    "angular-mocks": {
+      "ignore": true
+    }
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.2"
+  }
+}

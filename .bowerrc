@@ -1,0 +1,8 @@
+{
+  "directory": "vendor/",
+  "analytics": false,
+  "color": true,
+  "scripts": {
+    "postinstall": "gulp inject"
+  }
+}

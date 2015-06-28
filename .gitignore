@@ -16,13 +16,22 @@
 /**/*.log
 /tmp
 
+# Ignore unneeded client files
+**/.sass-cache/
+public/*
+!public/favicon.*
+node_modules/
+vendor/
+client/templatecache/
+client/assets/styles/app.css
+
 # Ignore other unneeded files.
 doc/
 *.swp
 *~
-.project
-.DS_Store
-.idea
+**/.project
+**/.DS_Store
+**/.idea
 /coverage/
 /.vagrant/
 

@@ -27,6 +27,7 @@ sudo apt-get install -q -y autoconf bison build-essential libssl-dev libyaml-dev
 
 # SQLite, Git and Node.js
 sudo apt-get install -q -y libsqlite3-dev git nodejs npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
 
 # ImageMagick
 sudo apt-get install -q -y imagemagick
@@ -65,7 +66,7 @@ sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/loca
 sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
 # Install useful JS libraries
-sudo npm install -g bower karma-cli gulp coffee-script --quiet
+sudo npm install -g bower karma-cli gulp coffee-script lodash --quiet
 
 # app specifics
 cd /vagrant
