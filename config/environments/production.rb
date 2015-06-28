@@ -22,7 +22,10 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  #config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  # Serve AngularJS client app from public folder
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -76,4 +79,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
+  # Mailer settings
+  config.action_mailer.default_url_options = { host: 'bbuddy.herokuapp.com' }
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = { address:        ENV["SMTP_SERVER"],
+                                       port:           ENV["MAILER_PORT"],
+                                       domain:         ENV["MAILER_DOMAIN"],
+                                       authentication: :plain,
+                                       user_name:      ENV["SMTP_USER"],
+                                       password:       ENV["SMTP_PWD"] }
 end

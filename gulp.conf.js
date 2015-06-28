@@ -132,7 +132,7 @@ module.exports = function() {
       camelize: true,
       lazy: true,
       rename: {
-        'gulp-ruby-sass': 'sass',
+        'gulp-sass': 'sass',
         'gulp-autoprefixer': 'prefix'
       }
     });
