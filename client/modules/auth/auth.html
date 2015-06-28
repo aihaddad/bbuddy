@@ -1,0 +1,13 @@
+<bb-layout>
+  <div flex="50" flex-sm="100" flex-order="1" flex-order-sm="2">
+    <bb-card>
+      <ui-view></ui-view>
+    </bb-card>
+  </div>
+
+  <div  flex flex-order="2" flex-order-sm="1"
+        class="banner-copy" ng-if="!user.signedIn">
+    <h1>Hello</h1>
+    <h3>Dolor sit amet, consectetur adipisicing</h3>
+  </div>
+</bb-layout>

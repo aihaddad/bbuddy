@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1,
+                    minimum-scale=1, user-scalable=no" />
+    <title ng-bind="title"></title>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide {
+            display: none!important;
+        }
+    </style>
+
+    <!-- build:css css/lib.css -->
+
+    <!-- vendor:css -->
+    <link rel="stylesheet" href="lib/angular-material.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <!-- build:css css/app.css -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="assets/styles/app.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body ng-include="'core/shell.html'">
+
+    <!-- build:js js/lib.js -->
+
+    <!-- vendor:js -->
+    
+    <script src="lib/angular.js"></script>
+    
+    <script src="lib/angular-ui-router.js"></script>
+    
+    <script src="lib/angular-resource.js"></script>
+    
+    <script src="lib/angular-cookie.js"></script>
+    
+    <script src="lib/angular-cookies.js"></script>
+    
+    <script src="lib/ng-token-auth.js"></script>
+    
+    <script src="lib/angular-animate.js"></script>
+    
+    <script src="lib/angular-aria.js"></script>
+    
+    <script src="lib/angular-material.js"></script>
+    
+    <script src="lib/angular-messages.js"></script>
+    
+    <!-- endinject -->
+    <!-- endbuild-->
+
+    <!-- build:js js/app.js -->
+
+    <!-- inject:js -->
+    <script src="app.js"></script>
+    <script src="core/app-core-module.js"></script>
+    <script src="services/common-service.js"></script>
+    <script src="services/current-user-service.js"></script>
+    <script src="services/menu-item-service.js"></script>
+    <script src="core/config/auth.js"></script>
+    <script src="core/config/constants.js"></script>
+    <script src="core/config/routes.js"></script>
+    <script src="core/config/themes.js"></script>
+    <script src="core/app-controller.js"></script>
+    <script src="core/app-filters.js"></script>
+    <script src="blocks/exception/exception-module.js"></script>
+    <script src="blocks/logger/logger-module.js"></script>
+    <script src="blocks/router/router-module.js"></script>
+    <script src="blocks/exception/exception-handler-provider.js"></script>
+    <script src="blocks/exception/exception-service.js"></script>
+    <script src="blocks/logger/logger-service.js"></script>
+    <script src="blocks/logger/plain-logger-service.js"></script>
+    <script src="blocks/router/route-helper-provider.js"></script>
+    <script src="components/components-module.js"></script>
+    <script src="components/bb-card/bb-card-directive.js"></script>
+    <script src="components/bb-auth-form/bb-auth-form-directive.js"></script>
+    <script src="components/bb-footer/bb-footer-directive.js"></script>
+    <script src="components/bb-layout/bb-layout-directive.js"></script>
+    <script src="components/bb-logo/bb-logo-directive.js"></script>
+    <script src="modules/auth/auth-module.js"></script>
+    <script src="modules/home/home-module.js"></script>
+    <script src="modules/auth/auth-routes.js"></script>
+    <script src="modules/home/home-controller.js"></script>
+    <script src="modules/home/home-routes.js"></script>
+    <!-- endinject -->
+
+    <!-- template.js -->
+    <!-- endbuild -->
+</body>
+</html>

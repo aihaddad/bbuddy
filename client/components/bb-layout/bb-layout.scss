@@ -1,0 +1,27 @@
+.navbar {
+  position: fixed;
+}
+
+.table-content {
+  position: absolute;
+  top: 1%;
+  left: 3%;
+  right: 3%;
+  /* width: 100%; */
+
+  @media (max-width: 599px) {
+    margin-top: 80px;
+  }
+}
+
+.table-top {
+  height: 100%;
+
+  .table-cloth {
+    background-image:url('../../assets/images/tablecloth.jpg');
+  }
+
+  .sheet {
+    background-color: $offWhite;
+  }
+}

@@ -1,0 +1,22 @@
+footer {
+  height: 200px;
+  width: 100%;
+  color: $white;
+  font-size: 12px;
+  position: fixed;
+  bottom: 0;
+  background-image: linear-gradient(top, $darkGreen, $darkGreen);
+  z-index: -1;
+
+  @media (max-width: 797px) {
+    display: none;
+  }
+
+  // 33623e
+
+  p {
+    position: absolute;
+    bottom: -0.5em;
+    right: 1em
+  }
+}

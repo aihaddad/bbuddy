@@ -1,0 +1,26 @@
+<md-toolbar class="md-whiteframe-z2 navbar" layout="row" hide-gt-sm md-theme="bb-white">
+  <bb-logo class="toolbar-logo"></bb-logo>
+</md-toolbar>
+
+<div  layout="row" layout-sm="column" layout-wrap class="table-content" ng-transclude></div>
+<!-- END table-content -->
+<div layout="row" class="table-top" ng-class="{fixed: user.signedIn}">
+
+  <div ng-if="user.signedIn" flex="10" flex-sm="100" class="md-whiteframe-z1 table-cloth">
+  </div>
+
+  <div ng-if="!user.signedIn" flex="10" hide-sm class="md-whiteframe-z1 table-cloth">
+  </div>
+
+  <div flex="5" hide-sm class="md-whiteframe-z1 sheet">
+  </div>
+
+  <div  ng-if="!user.signedIn" flex
+        class="md-whiteframe-z1 banner">
+  </div>
+
+  <div  ng-if="user.signedIn" flex hide-sm
+        class="md-whiteframe-z1 tray">
+  </div>
+</div>
+<!-- END table-top -->

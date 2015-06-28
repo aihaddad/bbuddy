@@ -1,0 +1,51 @@
+<form name="registrationForm" md-theme="bb-green" ng-init="auth.registrationForm = {}">
+
+  <div layout="row" layout-md="column" layout-sm="column" layout-wrap>
+    <md-input-container flex="50" flex-md="100" flex-sm="100">
+      <label>First Name</label>
+      <input ng-model="auth.registrationForm['first_name']">
+    </md-input-container>
+
+    <md-input-container flex="50" flex-md="100" flex-sm="100">
+      <label>Last Name</label>
+      <input ng-model="auth.registrationForm['last_name']">
+    </md-input-container>
+
+    <md-input-container flex="100">
+      <label>Email</label>
+      <input ng-model="auth.registrationForm.email" type="email">
+    </md-input-container>
+
+    <md-input-container flex="50" flex-md="100" flex-sm="100">
+      <label>Password</label>
+      <input ng-model="auth.registrationForm.password" type="password">
+    </md-input-container>
+
+    <md-input-container flex="50" flex-md="100" flex-sm="100">
+      <label>Password Confirmation</label>
+      <input ng-model="auth.registrationForm['password_confirmation']" type="password">
+    </md-input-container>
+
+    <div flex="50" flex-sm="100" flex-md="100" class="button-container">
+      <md-button class="md-raised md-primary contained-button"
+                 ng-click="auth.register()">
+                 Sign me up
+      </md-button>
+    </div>
+
+    <div flex="50" flex-sm="100" flex-md="100" md-theme="default" class="button-container">
+      <md-button ng-click="auth.facebookAuth()"
+                 class="md-raised md-primary contained-button">
+                 Facebook sign up
+      </md-button>
+    </div>
+
+    <div flex="100" md-theme="default" class="button-container">
+      <md-button ui-sref="auth.login"
+                 class="blended-button">
+                 I am already a member
+      </md-button>
+    </div>
+  </div>
+
+</form>

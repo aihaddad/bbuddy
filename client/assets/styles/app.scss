@@ -1,0 +1,37 @@
+html, body {
+  height: 100%;
+  @media (max-height: 797px) {
+    height: 105%;
+  }
+  @media (max-height: 667px) {
+    height: 120%;
+  }
+  @media (max-height: 475px) {
+    height: 160%;
+  }
+  @media (max-height: 200px) {
+    height: 220%;
+  }
+}
+
+.main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 200px;
+
+  @media (max-width: 797px) {
+    margin-bottom: 0;
+  }
+}
+
+.fixed {
+  @extend .main;
+  position: fixed;
+  margin-bottom: 0;
+}
+
+@import 'colors';
+@import 'variables';
+@import '../../modules/modules';
+@import '../../components/components';

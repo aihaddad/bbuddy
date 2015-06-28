@@ -1,0 +1,31 @@
+.banner {
+  background-image: linear-gradient(to top, $gradientOrange 0%,
+                                            $gradientOrange 100%),
+                    url('../../assets/images/pizza-light-mod-sm.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $secondaryOrange;
+
+  @media (max-height: 667px) {
+    background-image: linear-gradient(to top, $gradientOrange 0%,
+                      $gradientOrange 100%),
+                      url('../../assets/images/pizza-light-mod-sm.jpg');
+  }
+}
+
+.banner-copy {
+  margin-left: 30px;
+  font-family: Helvetica;
+  text-shadow: 0 1px 3px $mediumWarmGray, 0 1px 2px $mediumWarmGray;
+  color: $white;
+
+  h1 {
+    font-size: 4em;
+  }
+
+  @media (max-width: 667px) {
+    margin-top: -40px;
+    margin-left: 9%;
+  }
+}
