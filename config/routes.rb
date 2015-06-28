@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  mount_devise_token_auth_for 'User', at: 'api/auth', controllers: {
+    omniauth_callbacks: 'overrides/omniauth_callbacks',
+    sessions:           'overrides/sessions',
+    passwords:          'overrides/passwords'
+  }
+
   namespace :api, defaults: { format: :json }  do
     scope module: :v1,
           constraints: ApiConstraints.new(version: 1, default: true) do
