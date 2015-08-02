@@ -119,7 +119,7 @@ gulp.task('template-cache', ['clean-scripts'], function() {
 
 gulp.task('serve-dev', ['clean-scripts', 'inject'], function() {
   if (args.stack) {
-    exec('rails server');
+    exec('bin/rails server');
   }
 
   browserSync.use(browserSyncSpa({
