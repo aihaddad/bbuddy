@@ -56,7 +56,6 @@ rbenv rehash
 # Install other userful gems
 gem install mailcatcher
 gem install nokogiri
-gem install sass
 
 # Phantomjs
 sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2 -P /usr/local/share --quiet
@@ -77,6 +76,8 @@ sudo sudo -u postgres psql -1 -c "ALTER USER action WITH SUPERUSER;"
 rake db:create
 rake db:migrate
 rake db:seed
+sudo npm rebuild node-sass --quiet
+sudo npm install --quiet
 
 # cleanup
 sudo apt-get clean
