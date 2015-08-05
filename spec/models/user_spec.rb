@@ -10,26 +10,26 @@ RSpec.describe User, type: :model do
 
   describe "validations" do
 
-    it { expect(user).to validate_presence_of :email }
-    it { expect(user).to allow_value('email@example.com').for :email }
-    it { expect(user).not_to allow_value('email@example').for :email }
-    it { expect(user).not_to allow_value('email').for :email }
+    it {expect(user).to validate_presence_of :email}
+    it {expect(user).to allow_value('email@example.com').for :email}
+    it {expect(user).not_to allow_value('email@example').for :email}
+    it {expect(user).not_to allow_value('email').for         :email}
 
-    it { expect(user).to validate_presence_of :provider }
+    it {expect(user).to validate_presence_of :provider}
 
-    it { expect(user).to validate_uniqueness_of(:uid).scoped_to :provider }
-    it { expect(user).to validate_presence_of :uid }
+    it {expect(user).to validate_uniqueness_of(:uid).scoped_to :provider}
+    it {expect(user).to validate_presence_of   :uid}
 
-    it { expect(user).to validate_presence_of :password }
-    it { expect(user).to validate_confirmation_of :password }
-    it { expect(user).to validate_length_of(:password).is_at_least 8 }
+    it {expect(user).to validate_presence_of     :password}
+    it {expect(user).to validate_confirmation_of :password}
+    it {expect(user).to validate_length_of(:password).is_at_least 8}
 
-    it { expect(user).to validate_presence_of :first_name }
-    it { expect(user).to validate_presence_of :last_name }
-    it { expect(user).to \
-         validate_length_of(:first_name).is_at_least(2).is_at_most(60) }
-    it { expect(user).to \
-         validate_length_of(:last_name).is_at_least(2).is_at_most(60) }
+    it {expect(user).to validate_presence_of :first_name}
+    it {expect(user).to validate_presence_of  :last_name}
+    it {expect(user).to \
+                  validate_length_of(:first_name).is_at_least(2).is_at_most(60)}
+    it {expect(user).to \
+                   validate_length_of(:last_name).is_at_least(2).is_at_most(60)}
   end
 end
 

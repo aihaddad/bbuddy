@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates :first_name, length: { in: 2..60 }
   validates :last_name, presence: true
   validates :last_name, length: { in: 2..60 }
+
+  has_many :recipes
 end
 
 # == Schema Information

@@ -22,6 +22,7 @@ public/*
 node_modules/
 client/templatecache/
 client/assets/styles/app.css
+client/lib
 vendor/
 
 # Ignore other unneeded files.

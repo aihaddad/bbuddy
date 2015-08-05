@@ -19,11 +19,11 @@
         <div flex="90" offset="5" class="form-container">
 
           <form name="messageForm" md-theme="bb-green"
-                ng-init="home.messageForm = {}" ng-submit="home.sendMessage()">
+                ng-init="home.recipeUrlForm = {}" ng-submit="home.sendUrl()">
 
             <md-input-container flex="100">
-              <label  for="message">Your wish is my command...</label>
-              <input  ng-model="home.messageForm.message" name="message">
+              <label  for="url">Your wish is my command...</label>
+              <input  ng-model="home.recipeUrlForm.url" name="url">
             </md-input-container>
 
           </form>
@@ -32,13 +32,14 @@
 
     </md-grid-tile>
 
-    <md-grid-tile ng-repeat="item in home.menuItems"
-                  ng-click="home.showMenuItem($event, item.id)"
+    <md-grid-tile ng-repeat="recipe in home.recipes"
+                  ng-click="home.showRecipe(recipe)"
                   md-rowspan="1" md-colspan="1"
                   class="md-whiteframe-z1">
 
-      <p>This is a tile</p>
-      <md-grid-tile-footer><h3>{{:: item.title}}</h3></md-grid-tile-footer>
+      <img  style="width:100%;max-height:100%"
+            ng-src="{{recipe['image_url']}}" alt="{{recipe.title}}" />
+      <md-grid-tile-footer><h3>{{:: recipe.title || recipe.url}}</h3></md-grid-tile-footer>
     </md-grid-tile>
 
   </md-grid-list>

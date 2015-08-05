@@ -5,61 +5,41 @@
     .module('app.home')
     .controller('Home', Home);
 
-  Home.$inject = ['$mdDialog', '$rootScope', 'MenuItem'];
+  Home.$inject = ['$window', 'Recipe'];
 
   ////////////////////
 
-  function Home($mdDialog, $rootScope, MenuItem) {
+  function Home($window, Recipe) {
     var vm = this;
 
-    vm.sendMessage = function() {
-      var message = {
-        user: $rootScope.user,
-        message: vm.messageForm.message
-      };
-      console.log(message);
+    vm.fetchRecipes = function() {
+      Recipe.query()
+        .$promise
+        .then(function (recipes) {
+          vm.recipes = recipes;
+        });
     };
 
-    vm.showMenuItem = function(ev, id) {
-      console.log(ev);
-      console.log(id);
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'modules/home/menu-item-dialog.html',
-        targetEvent: ev,
-      })
-      .then(function(answer) {
-        // $scope.alert = 'You said the information was "' + answer + '".';
-      }, function() {
-        // $scope.alert = 'You cancelled the dialog.';
-      });
+    vm.fetchRecipes();
+
+    vm.sendUrl = function() {
+      vm.recipes.push(vm.recipeUrlForm);
+      var message = new Recipe();
+      message.recipe = vm.recipeUrlForm;
+      Recipe.save(message, vm.fetchRecipes);
     };
 
-    // MenuItem.get({id: 1}, function (response) {
-    //   vm.menuItem = response['menu_item'];
-    //   console.log(vm.menuItem);
+    vm.showRecipe = function(recipe) {
+      if (recipe['extractable']) {
+        console.log('Hello!');
+      } else {
+        $window.open(recipe['url'], '_blank');
+      }
+    };
+
+    // Recipe.get({id: 1}, function (response) {
+    //   vm.recipe = response['recipe'];
+    //   console.log(vm.recipe);
     // });
-
-    MenuItem.query()
-      .$promise
-      .then(function (items) {
-        vm.menuItems = items;
-      });
-
-    ////////////////////
-
-    // @ngInject
-
-    function DialogController($scope) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-      };
-    }
   }
-}());
+})();
