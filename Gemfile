@@ -47,7 +47,7 @@ gem 'active_model_serializers'
 gem 'omniauth', '~> 1.0.0'
 gem 'omniauth-facebook'
 gem 'devise_token_auth', '~> 0.1.32.beta9'
-# gem 'pundit'
+gem 'pundit'
 # Handle CORS
 gem 'rack-cors'
 # Add soft-destroy feature with Paranoia
@@ -56,7 +56,9 @@ gem 'rack-cors'
 group :doc do
   gem 'sdoc', '~> 0.4.0', require: false
 end
-# Use unicorn as the app server
+# Use Puma as the app server
 gem 'puma'
 # Deploy to Heroku
 gem 'rails_12factor', group: :production
+# Application-specific
+gem 'recipe_extractor', git: 'https://github.com/aihaddad/recipe_extractor.git'

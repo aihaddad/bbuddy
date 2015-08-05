@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/aihaddad/recipe_extractor.git
+  revision: 546524c5c365662118cc4b5f15ad3319d36d2c5e
+  specs:
+    recipe_extractor (0.0.1)
+      metainspector
+      mida
+      nokogiri
+      pismo
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,6 +48,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     annotate (2.6.10)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -50,6 +61,7 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    blankslate (2.1.2.4)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -59,9 +71,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chronic (0.10.2)
     cliver (0.3.2)
     coderay (1.1.0)
     columnize (0.9.0)
+    crass (1.0.2)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     devise (3.5.1)
@@ -78,6 +92,8 @@ GEM
       interception
     diff-lcs (1.2.5)
     docile (1.1.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -86,6 +102,14 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    faraday-cookie_jar (0.0.6)
+      faraday (>= 0.7.4)
+      http-cookie (~> 1.0.0)
+    faraday_middleware (0.9.2)
+      faraday (>= 0.7.4, < 0.10)
+    fast-stemmer (1.0.2)
+    fastimage (1.7.0)
+      addressable (~> 2.3, >= 2.3.5)
     ffaker (2.0.0)
     ffi (1.9.9)
     formatador (0.2.5)
@@ -106,6 +130,8 @@ GEM
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
     hashie (1.2.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     httpauth (0.2.1)
     i18n (0.7.0)
     interception (0.5)
@@ -120,7 +146,18 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    metainspector (4.6.0)
+      addressable (~> 2.3.5)
+      faraday (~> 0.9.0)
+      faraday-cookie_jar (~> 0.0.6)
+      faraday_middleware (~> 0.9.1)
+      fastimage
+      nokogiri (~> 1.6)
     method_source (0.8.2)
+    mida (0.3.8)
+      addressable (~> 2.3.6)
+      blankslate (= 2.1.2.4)
+      nokogiri (>= 1.5)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
@@ -129,6 +166,8 @@ GEM
     nenv (0.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
+    nokogumbo (1.4.1)
+      nokogiri
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -148,6 +187,12 @@ GEM
       omniauth (~> 1.0)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    pismo (0.7.4)
+      awesome_print
+      chronic
+      fast-stemmer
+      nokogiri
+      sanitize
     poltergeist (1.6.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
@@ -164,6 +209,8 @@ GEM
       pry (>= 0.9.10)
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
+    pundit (1.0.1)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -228,6 +275,10 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    sanitize (4.0.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (= 1.4.1)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -257,6 +308,9 @@ GEM
     timecop (0.7.4)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.5.4)
@@ -289,10 +343,12 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  pundit
   rack-cors
   rails (= 4.2.2)
   rails-api
   rails_12factor
+  recipe_extractor!
   rspec-rails
   sdoc (~> 0.4.0)
   shoulda-callback-matchers (~> 1.0)
@@ -304,4 +360,4 @@ DEPENDENCIES
   timecop
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

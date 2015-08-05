@@ -3,14 +3,14 @@
 
   angular
     .module('app.core')
-    .factory('MenuItem', MenuItem);
+    .factory('Recipe', Recipe);
 
-  MenuItem.$inject = ['$resource'];
+  Recipe.$inject = ['$resource'];
 
   ////////////////////
 
-  function MenuItem($resource) {
-    return $resource('/api/menu_items/:id',
+  function Recipe($resource) {
+    return $resource('/api/recipes/:id',
         {
           id: '@id'
         },
