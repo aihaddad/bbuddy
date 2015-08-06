@@ -32,6 +32,9 @@ module Bitebuddy
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Set ActiveJob adapter
+    config.active_job.queue_adapter = :sidekiq
+
     # Do not generate RSpec tests for views and helpers
     config.generators do |g|
       g.test_framework :rspec, fixture: true
