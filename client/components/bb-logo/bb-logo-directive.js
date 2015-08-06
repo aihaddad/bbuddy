@@ -22,7 +22,7 @@
     function bbLogoCtrl($rootScope, $scope, $state) {
       $scope.goHome = function() {
         if ($rootScope.user.id) {
-          $state.go('home.landing');
+          $state.go('home.base');
         } else {
           $state.go('auth.register');
         }

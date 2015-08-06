@@ -33,10 +33,10 @@
           }
         },
         {
-          state: 'home.landing',
+          state: 'home.base',
           config: {
             url: '/',
-            templateUrl: 'modules/home/landing.html',
+            templateUrl: 'modules/home/home.html',
             authorization: ['Anonymous']
           }
         }

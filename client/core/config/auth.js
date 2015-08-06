@@ -14,7 +14,7 @@
   function handleAuthEvents($rootScope, $state) {
     $rootScope
       .$on('auth:login-success', function(event, user) {
-          $state.go('home.landing');
+          $state.go('home.base');
         });
   }
 

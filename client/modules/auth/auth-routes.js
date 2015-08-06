@@ -20,7 +20,7 @@
             controller: /* @ngInject */ function ($state, $auth) {
               $auth.validateUser()
                 .then(function (user) {
-                  $state.go('home.landing');
+                  $state.go('home.base');
                 });
             }
           }

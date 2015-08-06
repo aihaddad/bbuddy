@@ -26,7 +26,7 @@
       vm.recipes.push(vm.recipeUrlForm);
       var message = new Recipe();
       message.recipe = vm.recipeUrlForm;
-      Recipe.save(message, vm.fetchRecipes);
+      Recipe.save(message);
     };
 
     vm.showRecipe = function(recipe) {
