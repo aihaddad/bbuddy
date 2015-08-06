@@ -1,6 +1,7 @@
 <bb-layout>
   <md-grid-list
-        md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4" md-cols-lg="5" md-cols-gt-lg="6"
+        md-cols-sm="2" md-cols-md="3" md-cols-gt-md="4"
+        md-cols-lg="5" md-cols-gt-lg="6"
         md-row-height-gt-md="1:1" md-row-height="4:3"
         md-gutter="8px" md-gutter-gt-sm="6px">
 
@@ -32,14 +33,16 @@
 
     </md-grid-tile>
 
-    <md-grid-tile ng-repeat="recipe in home.recipes"
+    <md-grid-tile ng-repeat="recipe in home.recipes | orderBy:'-created_at'""
                   ng-click="home.showRecipe(recipe)"
                   md-rowspan="1" md-colspan="1"
                   class="md-whiteframe-z1">
 
       <img  style="width:100%;max-height:100%"
             ng-src="{{recipe['image_url']}}" alt="{{recipe.title}}" />
-      <md-grid-tile-footer><h3>{{:: recipe.title || recipe.url}}</h3></md-grid-tile-footer>
+      <md-grid-tile-footer>
+        <h3>{{:: recipe.title || recipe.url}}</h3>
+      </md-grid-tile-footer>
     </md-grid-tile>
 
   </md-grid-list>

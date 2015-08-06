@@ -22,10 +22,10 @@ module API
       # POST /recipes.json
       def create
         @recipe = current_user.recipes.build(recipe_params)
-        @recipe.store_meta
-
         if @recipe.save
-          render json: @recipe, status: :created, location: [:api, @recipe]
+          if SaveRecipeJob.perform_later @recipe
+            render json: @recipe, status: :created, location: [:api, @recipe]
+          end
         else
           render json: @recipe.errors, status: :unprocessable_entity
         end

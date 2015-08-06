@@ -5,7 +5,7 @@ footer {
   font-size: 12px;
   position: fixed;
   bottom: 0;
-  background-image: linear-gradient(top, $darkGreen, $darkGreen);
+  background-image: linear-gradient(to bottom, $darkGreen, $darkGreen);
   z-index: -1;
 
   @media (max-width: 797px) {
