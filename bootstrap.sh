@@ -34,6 +34,7 @@ sudo apt-get install -q -y imagemagick
 
 # Postgres
 sudo apt-get install -q -y postgresql-9.3 postgresql-server-dev-9.3 postgresql-contrib-9.3
+sudo su postgres -c "createuser vagrant -s"
 
 # Redis
 sudo apt-get install -q -y redis-server
@@ -43,6 +44,7 @@ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+git clone https://github.com/dcarley/rbenv-sudo.git ~/.rbenv/plugins/rbenv-sudo
 
 # Install ruby 2.2.2 and bundler
 export RBENV_ROOT="${HOME}/.rbenv"
@@ -56,6 +58,7 @@ rbenv rehash
 # Install other userful gems
 gem install mailcatcher
 gem install nokogiri
+gem install foreman
 
 # Phantomjs
 sudo wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2 -P /usr/local/share --quiet
@@ -71,13 +74,15 @@ sudo npm install -g bower karma-cli gulp coffee-script lodash --quiet
 cd /vagrant
 bundle install --quiet
 rbenv rehash
-sudo sudo -u postgres psql -1 -c "CREATE USER action WITH PASSWORD 'pass';"
-sudo sudo -u postgres psql -1 -c "ALTER USER action WITH SUPERUSER;"
 rake db:create
 rake db:migrate
 rake db:seed
-sudo npm rebuild node-sass --quiet
-sudo npm install --quiet
-
+if [ ! -d "./node_modules" ]; then
+  sudo npm rebuild node-sass --quiet
+  sudo npm install --quiet
+fi
+# Create app init scripts with Foreman
+rbenv sudo foreman export upstart /etc/init -a rails -u vagrant
+sudo service rails start
 # cleanup
 sudo apt-get clean

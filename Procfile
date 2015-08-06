@@ -1,1 +1,2 @@
-web: bundle exec puma -p $PORT
+web: bundle exec puma -p 3000
+worker: bundle exec sidekiq
