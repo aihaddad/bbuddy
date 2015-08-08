@@ -117,9 +117,9 @@ gulp.task('template-cache', ['clean-scripts'], function() {
 
 // Development server
 
-gulp.task('serve-dev', ['clean-scripts', 'inject'], function() {
+gulp.task('serve-dev', ['clean-scripts', 'styles'], function() {
   if (args.stack) {
-    exec('bin/rails server');
+    exec('foreman start');
   }
 
   browserSync.use(browserSyncSpa({
@@ -192,7 +192,7 @@ gulp.task('heroku:production',  ['build']);
 
 gulp.task('serve-dist', ['build'], function() {
   if (args.stack) {
-    exec('bundle exec rails server');
+    exec('foreman start');
   }
 
   browserSync.use(browserSyncSpa({
