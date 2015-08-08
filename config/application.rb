@@ -50,13 +50,5 @@ module Bitebuddy
 
     # Load extra lib modules/classes
     config.autoload_paths += %W(\#{config.root}/lib)
-
-    # Enable CORS ==> move to environments/development.rb and figure it out with Heroku
-    config.middleware.insert_before 0, "Rack::Cors" do
-      allow do
-        origins '*'
-        resource '*', :headers => :any
-      end
-    end
   end
 end

@@ -1,9 +1,12 @@
 require 'api_constraints'
+require 'sidekiq/web'
 
 Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  mount Sidekiq::Web => '/sidekiq'
 
   mount_devise_token_auth_for 'User', at: 'api/auth', controllers: {
     omniauth_callbacks: 'overrides/omniauth_callbacks',

@@ -63,3 +63,4 @@ gem 'rails_12factor', group: :production
 # Application-specific
 gem 'recipe_extractor', git: 'https://github.com/aihaddad/recipe_extractor.git'
 gem 'sidekiq'
+gem 'sinatra', :require => nil
