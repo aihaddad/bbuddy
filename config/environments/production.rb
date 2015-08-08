@@ -87,10 +87,13 @@ Rails.application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true
-  ActionMailer::Base.smtp_settings = { address:        ENV["SMTP_SERVER"],
-                                       port:           ENV["MAILER_PORT"],
-                                       domain:         ENV["MAILER_DOMAIN"],
-                                       authentication: :plain,
-                                       user_name:      ENV["SMTP_USER"],
-                                       password:       ENV["SMTP_PWD"] }
+  ActionMailer::Base.smtp_settings = {
+                      address:         'smtp.sendgrid.net',
+                      port:            '587',
+                      authentication:  :plain,
+                      user_name:       ENV['SMTP_USER'],
+                      password:        ENV['SMTP_PWD'],
+                      domain:          'heroku.com',
+                      enable_starttls_auto:  true
+                    }
 end
