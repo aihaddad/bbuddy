@@ -2,24 +2,17 @@ module API
   module V1
     class RecipesController < ApplicationController
       before_action :set_recipe, only: [:show, :update, :destroy]
-      before_action :authenticate_user!, only: [:create, :destroy]
+      before_action :authenticate_user!, only: [:create, :update, :destroy]
 
-      # GET /recipes
-      # GET /recipes.json
       def index
         @recipes = Recipe.all
-
         render json: @recipes
       end
 
-      # GET /recipes/1
-      # GET /recipes/1.json
       def show
         render json: @recipe, location: [:api, @recipe]
       end
 
-      # POST /recipes
-      # POST /recipes.json
       def create
         @recipe = current_user.recipes.build(recipe_params)
         if @recipe.save
@@ -31,21 +24,11 @@ module API
         end
       end
 
-      # PATCH/PUT /recipes/1
-      # PATCH/PUT /recipes/1.json
-      def update
-        if @recipe.update(recipe_params)
-          head :no_content
-        else
-          render json: @recipe.errors, status: :unprocessable_entity
-        end
-      end
+      # Update function in the future letting users add text ingredients and
+      # directions for non-parsable recipes
 
-      # DELETE /recipes/1
-      # DELETE /recipes/1.json
       def destroy
         @recipe.destroy
-
         head :no_content
       end
 
