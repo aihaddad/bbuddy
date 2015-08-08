@@ -43,4 +43,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+
+  # Enable CORS
+  config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins 'localhost:3100'
+      resource '*', :headers => :any
+    end
+  end
 end
