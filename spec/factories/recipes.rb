@@ -1,18 +1,35 @@
 FactoryGirl.define do
   factory :recipe do
-    source "Myfoodbook"
-    favicon "favicon.ico"
-    url FFaker::Internet.domain_name
-    description FFaker::Lorem.paragraph
-    title FFaker::Lorem.sentence
-    image_url FFaker::Internet.domain_name
-    extractable false
-    user_id 1
-  end
-  factory :proper_recipe_url do
-    url 'http://tinyw.in/pg42'
-  end
-  factory :improper_recipe_url do
-    url 'http://tinyw.in/KyGp'
+    association :user
+    url 'http://myfoodbook.co/some-recipe/2'
+
+    trait :invalid do
+      url 'invalid'
+    end
+
+    trait :extractable do
+      url 'http://tinyw.in/pg42'
+    end
+
+    trait :non_extractable do
+      url 'http://tinyw.in/KyGp'
+    end
   end
 end
+
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  source      :string
+#  favicon     :string
+#  url         :string
+#  description :text
+#  title       :string
+#  image_url   :string
+#  extractable :boolean
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#

@@ -1,10 +1,11 @@
 class Recipe < ActiveRecord::Base
-  validates :url, presence: true
-  validates :user_id, presence: true
+  validates :url,     presence: true, url: true
+  validates :user, presence: true
+
+  validates :favicon,   url: true, allow_blank: true
+  validates :image_url, url: true, allow_blank: true
 
   belongs_to :user
-
-  # after_commit :store_meta
 
   def extractable?
     self.extractable
@@ -25,5 +26,21 @@ class Recipe < ActiveRecord::Base
     self.title, self.description = rec.meta[:title], rec.meta[:description]
     self.extractable = rec.meta[:extractable]
   end
-
 end
+
+# == Schema Information
+#
+# Table name: recipes
+#
+#  id          :integer          not null, primary key
+#  source      :string
+#  favicon     :string
+#  url         :string
+#  description :text
+#  title       :string
+#  image_url   :string
+#  extractable :boolean
+#  user_id     :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
