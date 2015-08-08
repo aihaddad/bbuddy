@@ -16,7 +16,7 @@
         },
         {
           index: {method: 'GET', isArray: true},
-          show:  {method: 'GET', isArrat: false}
+          show:  {method: 'GET', isArray: false}
         }
       );
   }
