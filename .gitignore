@@ -37,4 +37,6 @@ doc/
 
 # Ignore application configuration
 /config/secrets.yml
+.foreman
 .secret
+.env

@@ -3,6 +3,8 @@ ruby '2.2.2'
 # Use rails 4.2.2 as a backend api provider
 gem 'rails', '4.2.2'
 gem 'rails-api'
+# Use DotEnv to manage application environment variables
+gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Runtime setup
