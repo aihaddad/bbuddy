@@ -10,18 +10,28 @@
     <link rel="icon" type="image/png" href='assets/images/favicon.png'>
     <title ng-bind="title"></title>
     <style>
-        /* This helps the ng-show/ng-hide animations start at the right place. */
-        /* Since Angular has this but needs to load, this gives us the class early. */
-        .ng-hide {
-            display: none!important;
-        }
+        /* This helps the ng-show/ng-hide animations start at the right place.
+         * Angular has this but needs to load, this gives us the class early. */
+        .ng-hide{display: none!important;}
+        /* Hide initial HTML flash */
+        body>.inner{display: none;}
+        body.pg-loaded>.inner{display: block;}
     </style>
+
+    <!-- splash:css -->
+    <link rel="stylesheet" href="lib/please-wait.css">
+    <!-- endinject -->
+
+    <!-- splash:js -->
+    <script src="lib/please-wait.min.js"></script>
+    <!-- endinject -->
 
     <!-- build:css css/lib.css -->
 
     <!-- vendor:css -->
     <link rel="stylesheet" href="lib/normalize.css">
-    <link rel="stylesheet" href="lib/angular-material.css">
+    <link rel="stylesheet" href="lib/angular-material.min.css">
+    <link rel="stylesheet" href="lib/spinkit.css">
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -34,19 +44,28 @@
 </head>
 <body ng-include="'core/shell.html'">
 
+    <script type="text/javascript">
+      // Show the loading screen
+      window.loadingScreen = window.pleaseWait({
+        backgroundColor: '#FA6529',
+        loadingHtml:
+          "<h3 style='color:white;'>Please bare with us until the application loads!</h3>"
+      });
+    </script>
+
     <!-- build:js js/lib.js -->
 
     <!-- vendor:js -->
-    <script src="lib/angular.js"></script>
-    <script src="lib/angular-ui-router.js"></script>
-    <script src="lib/angular-resource.js"></script>
-    <script src="lib/angular-cookie.js"></script>
-    <script src="lib/angular-cookies.js"></script>
-    <script src="lib/ng-token-auth.js"></script>
-    <script src="lib/angular-animate.js"></script>
-    <script src="lib/angular-aria.js"></script>
-    <script src="lib/angular-material.js"></script>
-    <script src="lib/angular-messages.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/angular-cookie.min.js"></script>
+    <script src="lib/angular-cookies.min.js"></script>
+    <script src="lib/ng-token-auth.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/angular-aria.min.js"></script>
+    <script src="lib/angular-material.min.js"></script>
+    <script src="lib/angular-messages.min.js"></script>
     <!-- endinject -->
     <!-- endbuild-->
 
@@ -65,17 +84,17 @@
     <script src="core/app-controller.js"></script>
     <script src="core/app-filters.js"></script>
     <script src="blocks/exception/exception-module.js"></script>
-    <script src="blocks/router/router-module.js"></script>
     <script src="blocks/logger/logger-module.js"></script>
+    <script src="blocks/router/router-module.js"></script>
     <script src="blocks/exception/exception-handler-provider.js"></script>
     <script src="blocks/exception/exception-service.js"></script>
-    <script src="blocks/router/route-helper-provider.js"></script>
     <script src="blocks/logger/logger-service.js"></script>
     <script src="blocks/logger/plain-logger-service.js"></script>
+    <script src="blocks/router/route-helper-provider.js"></script>
     <script src="components/components-module.js"></script>
     <script src="components/bb-auth-form/bb-auth-form-directive.js"></script>
-    <script src="components/bb-footer/bb-footer-directive.js"></script>
     <script src="components/bb-card/bb-card-directive.js"></script>
+    <script src="components/bb-footer/bb-footer-directive.js"></script>
     <script src="components/bb-layout/bb-layout-directive.js"></script>
     <script src="components/bb-logo/bb-logo-directive.js"></script>
     <script src="modules/auth/auth-module.js"></script>

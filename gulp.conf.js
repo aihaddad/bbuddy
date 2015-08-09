@@ -18,9 +18,10 @@ module.exports = function() {
   ];
   var specJs = app + '**/*-spec.coffee';
   var libJs = [
-    app + 'lib/**/*jquery*.js', app + 'lib/**/angular.js', app + 'lib/**/*route*.js',
+    app + 'lib/**/*jquery*.js', app + 'lib/**/angular.min.js', app + 'lib/**/*route*.js',
     app + 'lib/**/*resource*.js', app + 'lib/**/*cookie*.js', app + 'lib/**/*token*.js',
-    app + 'lib/**/*animate*.js', app + 'lib/**/*aria*.js', app + 'lib/**/*.js'
+    app + 'lib/**/*animate*.js', app + 'lib/**/*aria*.js', app + 'lib/**/*.js',
+    '!' + app + 'lib/**/please-wait*.js'
   ];
 
   ////////////////////
@@ -46,10 +47,14 @@ module.exports = function() {
         app:      app + 'assets/styles/app.scss',
         compiled: app + 'assets/styles/app.css',
         dest:     app + 'assets/styles/',
-        lib:      [app + 'lib/**/normalize.css', app + 'lib/**/*.css'],
+        lib: [
+          app + 'lib/**/normalize.css', app + 'lib/**/*.css',
+          '!' + app + 'lib/**/please-wait.css'
+        ],
         all: [
           app + '**/*.scss', app + '**/*.css', '!' + app + 'vendor{,/**}'
-        ]
+        ],
+        splash: app + 'lib/**please-wait.css'
       },
       html: {
         index: app + 'index.html',
@@ -64,6 +69,7 @@ module.exports = function() {
       js: {
         app: appJs,
         lib: libJs,
+        splash: app + 'lib/**/please-wait*.js',
         template: {
           file: app + 'templatecache/template.js',
           dest: app + 'templatecache/',

@@ -9,6 +9,7 @@ var browserSyncSpa = require('browser-sync-spa');
 var bowerFiles     = require('main-bower-files');
 var del            = require('del');
 var exec           = require('child_process').exec;
+var exists         = require('path-exists').sync;
 var reload         = browserSync.reload;
 
 ////////////////////
@@ -25,8 +26,14 @@ gulp.task('help', $.taskListing);
 
 gulp.task('vendor', function() {
   log('Importing Bower files into app vendor');
-
-  gulp.src(bowerFiles(config.bowerFilesOptions))
+  // Replace files by their minified version when possible
+  var bowerWithMin = bowerFiles().map(function(path, index, arr) {
+    var newPath = path.replace(/.([^.]+)$/g, '.min.$1');
+    return exists(newPath) ? newPath : path;
+  });
+  // Copy them to another directory
+  return gulp
+    .src(bowerWithMin)
     .pipe(gulp.dest(config.dev.libFolder));
 });
 
@@ -98,8 +105,14 @@ gulp.task('inject', ['vendor', 'styles'], function() {
 
   return gulp
     .src(config.dev.html.index)
-    .pipe($.inject(gulp.src(config.dev.js.lib), {name: 'vendor', relative: true}))
-    .pipe($.inject(gulp.src(config.dev.css.lib), {name: 'vendor', relative: true}))
+    .pipe($.inject(gulp.src(config.dev.js.lib),
+      {name: 'vendor', relative: true}))
+    .pipe($.inject(gulp.src(config.dev.js.splash),
+      {name: 'splash', relative: true}))
+    .pipe($.inject(gulp.src(config.dev.css.lib),
+      {name: 'vendor', relative: true}))
+    .pipe($.inject(gulp.src(config.dev.css.splash),
+      {name: 'splash', relative: true}))
     .pipe($.inject(gulp.src(config.dev.css.compiled), {relative: true}))
     .pipe($.inject(gulp.src(config.dev.js.app), {relative: true}))
     .pipe(gulp.dest(config.dev.client));
@@ -149,7 +162,7 @@ gulp.task('s',  ['serve-dev']); /* alias */
 
 // Build pipeline
 
-gulp.task('build', ['optimize', 'optimize-images']);
+gulp.task('build', ['move-splash', 'optimize', 'optimize-images']);
 
 gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
   log('Optimizing JS, CSS and HTML');
@@ -163,6 +176,8 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
     .src(config.dev.html.index)
     .pipe($.plumber())
     .pipe($.replace('assets/images/', 'img/'))
+    .pipe($.replace('lib/please-wait.css/', 'css/please-wait.css'))
+    .pipe($.replace('lib/please-wait.js/', 'js/please-wait.js'))
     .pipe($.injectString.after('<!-- template.js -->', config.dev.js.template.ref))
     .pipe($.injectString.after('<html ng-app="app"', ' ng-strict-di'))
     .pipe(assets)
@@ -191,6 +206,20 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
     .pipe($.rev.manifest())
     .pipe(gulp.dest(config.dist.client));
 });
+
+gulp.task('move-splash-css', function() {
+  return gulp
+    .src(config.dev.css.splash)
+    .pipe(gulp.dest(config.dist.css.dest));
+});
+
+gulp.task('move-splash-js', function() {
+  return gulp
+    .src(config.dev.js.splash)
+    .pipe(gulp.dest(config.dist.js.dest));
+});
+
+gulp.task('move-splash', ['move-splash-css', 'move-splash-js']);
 
 gulp.task('heroku:production',  ['build']);
 
