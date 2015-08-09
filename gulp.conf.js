@@ -46,7 +46,7 @@ module.exports = function() {
         app:      app + 'assets/styles/app.scss',
         compiled: app + 'assets/styles/app.css',
         dest:     app + 'assets/styles/',
-        lib:      app + 'lib/**/*.css',
+        lib:      [app + 'lib/**/normalize.css', app + 'lib/**/*.css'],
         all: [
           app + '**/*.scss', app + '**/*.css', '!' + app + 'vendor{,/**}'
         ]

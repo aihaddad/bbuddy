@@ -1,5 +1,6 @@
 <bb-layout>
-  <div flex="50" flex-sm="100" flex-order="1" flex-order-sm="2">
+  <div flex="50" flex-sm="100" flex-order="1" flex-order-sm="2"
+      class="banner-card">
     <bb-card>
       <ui-view></ui-view>
     </bb-card>
@@ -7,7 +8,10 @@
 
   <div  flex flex-order="2" flex-order-sm="1"
         class="banner-copy" ng-if="!user.signedIn">
-    <h1>Hello</h1>
-    <h3>Dolor sit amet, consectetur adipisicing</h3>
+    <h1>
+      Easily manage<br />
+      your favorite recipes
+    </h1>
+    <h2>Convenient even when your hands are busy.</h2>
   </div>
 </bb-layout>

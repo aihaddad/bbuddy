@@ -18,17 +18,11 @@ html, body {
   position: relative;
   height: 100%;
   width: 100%;
-  margin-bottom: 200px;
-
-  @media (max-width: 797px) {
-    margin-bottom: 0;
-  }
 }
 
 .fixed {
   @extend .main;
   position: fixed;
-  margin-bottom: 0;
 }
 
 @import 'colors';

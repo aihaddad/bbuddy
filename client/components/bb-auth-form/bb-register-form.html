@@ -1,5 +1,11 @@
 <form name="registrationForm" md-theme="bb-green" ng-init="auth.registrationForm = {}">
 
+  <div flex>
+    <h3>
+      New here? <span>Sign up below <hr></span>
+    </h3>
+  </div>
+
   <div layout="row" layout-md="column" layout-sm="column" layout-wrap>
     <md-input-container flex="50" flex-md="100" flex-sm="100">
       <label>First Name</label>
@@ -36,7 +42,7 @@
     <div flex="50" flex-sm="100" flex-md="100" md-theme="default" class="button-container">
       <md-button ng-click="auth.facebookAuth()"
                  class="md-raised md-primary contained-button">
-                 Facebook sign up
+                 Facebook Authenticate
       </md-button>
     </div>
 

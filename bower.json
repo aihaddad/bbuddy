@@ -32,7 +32,8 @@
     "angular-messages": "~1.4.2",
     "angular-resource": "~1.4.2",
     "angular-ui-router": "~0.2.13",
-    "ng-token-auth": "~0.0.24"
+    "ng-token-auth": "~0.0.24",
+    "normalize.css": "~3.0.3"
   },
   "overrides": {
     "angular-mocks": {
