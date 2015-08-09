@@ -79,6 +79,11 @@ gulp.task('optimize-images', ['clean-images'], function() {
   return gulp
     .src(config.dev.img.app)
     .pipe($.imagemin({optimizationLevel: 4}))
+    .pipe($.imagemin({
+      optimizationLevel: 4,
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}]
+    }))
     .pipe(gulp.dest(config.dist.img.dest));
 });
 
@@ -157,6 +162,7 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
   return gulp
     .src(config.dev.html.index)
     .pipe($.plumber())
+    .pipe($.replace('assets/images/', 'img/'))
     .pipe($.injectString.after('<!-- template.js -->', config.dev.js.template.ref))
     .pipe($.injectString.after('<html ng-app="app"', ' ng-strict-di'))
     .pipe(assets)

@@ -25,9 +25,14 @@ sudo /usr/sbin/update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 sudo apt-get update -q
 sudo apt-get install -q -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev libcurl4-openssl-dev curl wget vim
 
-# SQLite, Git and Node.js
-sudo apt-get install -q -y libsqlite3-dev git nodejs npm
-sudo ln -s /usr/bin/nodejs /usr/bin/node
+# SQLite, Git
+sudo apt-get install -q -y libsqlite3-dev git
+
+# NodeJS with NVM
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm install node
+nvm alias default node
 
 # ImageMagick
 sudo apt-get install -q -y imagemagick
@@ -68,7 +73,7 @@ sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/loca
 sudo ln -s /usr/local/share/phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/bin/phantomjs
 
 # Install useful JS libraries
-sudo npm install -g bower karma-cli gulp coffee-script lodash --quiet
+npm install -g bower karma-cli gulp coffee-script lodash --quiet
 
 # app specifics
 cd /vagrant
@@ -78,8 +83,8 @@ rake db:create
 rake db:migrate
 rake db:seed
 if [ ! -d "./node_modules" ]; then
-  sudo npm rebuild node-sass --quiet
-  sudo npm install --quiet
+  npm cache clean
+  npm install --quiet
 fi
 # Create app init scripts with Foreman
 rbenv sudo foreman export upstart /etc/init -a rails -u vagrant
