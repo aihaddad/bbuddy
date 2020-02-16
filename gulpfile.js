@@ -175,9 +175,9 @@ gulp.task('optimize', ['inject', 'template-cache', 'styles'], function() {
   return gulp
     .src(config.dev.html.index)
     .pipe($.plumber())
-    .pipe($.replace('assets/images/', 'img/'))
-    .pipe($.replace('lib/please-wait.css/', 'css/please-wait.css'))
-    .pipe($.replace('lib/please-wait.js/', 'js/please-wait.js'))
+    .pipe($.replace('assets/images', 'img'))
+    .pipe($.replace('lib/please-wait.css', 'css/please-wait.css'))
+    .pipe($.replace('lib/please-wait.min.js', 'js/please-wait.min.js'))
     .pipe($.injectString.after('<!-- template.js -->', config.dev.js.template.ref))
     .pipe($.injectString.after('<html ng-app="app"', ' ng-strict-di'))
     .pipe(assets)
